@@ -1,0 +1,9 @@
+dependencies:
+- name: karpenter
+  repository: oci://public.ecr.aws/karpenter
+  version: 1.7.1
+- name: gluon
+  repository: oci://registry1.dso.mil/bigbang
+  version: 0.9.3
+digest: sha256:24b37a1f6290bee4a11ddef0579b5d35023d80213441bf44022ed9ef1874d1b7
+generated: "2025-10-10T10:55:26.505916-05:00"

@@ -2,8 +2,8 @@ apiVersion: v2
 name: karpenter
 description: A Helm chart for Karpenter, an open-source node provisioning project built for Kubernetes.
 type: application
-version: 1.5.0
-appVersion: 1.5.0
+version: 1.6.3-bb.0
+appVersion: 1.6.3
 keywords:
   - cluster
   - node
@@ -32,3 +32,11 @@ annotations:
       name: nodepools.karpenter.sh
       displayName: NodePool
       description: NodePool is the Schema for the NodePools API.
+dependencies:
+- name: karpenter
+  version: '1.7.1'
+  repository: 'oci://public.ecr.aws/karpenter'
+  alias: upstream
+- name: gluon
+  version: '0.9.3'
+  repository: 'oci://registry1.dso.mil/bigbang'
