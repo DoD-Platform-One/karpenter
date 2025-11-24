@@ -19,3 +19,7 @@ upstream:
       limits:
         cpu: 2
         memory: 8Gi
+bbtests:
+  enabled: false
+  scripts:
+    image: "registry1.dso.mil/ironbank/big-bang/devops-tester:1.0"

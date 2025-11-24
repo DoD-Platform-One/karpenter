@@ -1,7 +1,7 @@
 <!-- Warning: Do not manually edit this file. See notes on gluon + helm-docs at the end of this file for more information. -->
 # karpenter
 
-![Version: 1.6.3-bb.0](https://img.shields.io/badge/Version-1.6.3--bb.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.6.3](https://img.shields.io/badge/AppVersion-1.6.3-informational?style=flat-square) ![Maintenance Track: unknown](https://img.shields.io/badge/Maintenance_Track-unknown-red?style=flat-square)
+![Version: 1.6.3-bb.1](https://img.shields.io/badge/Version-1.6.3--bb.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.6.3](https://img.shields.io/badge/AppVersion-1.6.3-informational?style=flat-square) ![Maintenance Track: unknown](https://img.shields.io/badge/Maintenance_Track-unknown-red?style=flat-square)
 
 A Helm chart for Karpenter, an open-source node provisioning project built for Kubernetes.
 
@@ -59,6 +59,8 @@ helm install karpenter chart/
 | upstream.controller.resources.requests.memory | string | `"4Gi"` |  |
 | upstream.controller.resources.limits.cpu | int | `2` |  |
 | upstream.controller.resources.limits.memory | string | `"8Gi"` |  |
+| bbtests.enabled | bool | `false` |  |
+| bbtests.scripts.image | string | `"registry1.dso.mil/ironbank/big-bang/devops-tester:1.0"` |  |
 
 ## Contributing
 
