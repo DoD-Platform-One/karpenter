@@ -1,0 +1,31 @@
+{{- if .Values.bbtests }}
+{{- if .Values.bbtests.enabled }}
+apiVersion: v1
+kind: Pod
+metadata:
+  name: {{ template "karpenter.fullname" . }}-test-metrics
+  namespace: {{ .Release.Namespace }}
+  annotations:
+    "helm.sh/hook": test
+    "helm.sh/hook-delete-policy": before-hook-creation,hook-failed,hook-succeeded
+spec:
+  restartPolicy: Never
+  imagePullSecrets:
+    - name: private-registry
+  containers:
+    - name: curl
+      image: registry1.dso.mil/ironbank/big-bang/devops-tester:1.0      
+      env:
+        - name: METRICS_URL
+          value: "http://{{ .Release.Name}}.{{ .Release.Namespace}}.svc.cluster.local:8080/metrics"
+      command:
+        - /bin/sh
+        - -c
+        - |
+          set -euo pipefail
+          echo "Checking Karpenter metrics endpoint ..."
+          echo "Status code: $(curl -sf --write-out '%{http_code}' $METRICS_URL -o /dev/null)"
+          # Fetch metrics
+          echo "Karpenter Version: $(curl -sf "$METRICS_URL" | grep karpenter_build_info |jq -R 'capture(",version=\"(?<v>[^\"]+)\"").v')"
+{{- end }}
+{{- end }}
