@@ -2,6 +2,20 @@
 ### Please refer to the upstream chart via "helm show values ./chart/charts/<upstream-package.tar.gz>" for other value configs.
 ### @default -- Upstream chart values
 
+bb-common:
+  networkPolicies:
+    enabled: true
+    ingress:
+      defaults:
+        enabled: true
+    egress:
+      defaults:
+        enabled: true
+  authorizationPolicies:
+    enabled: true
+    defaults:
+      enabled: true
+
 upstream:
   nameOverride: karpenter
   fullnameOverride: karpenter

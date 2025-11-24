@@ -1,7 +1,7 @@
 <!-- Warning: Do not manually edit this file. See notes on gluon + helm-docs at the end of this file for more information. -->
 # karpenter
 
-![Version: 1.6.3-bb.1](https://img.shields.io/badge/Version-1.6.3--bb.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.6.3](https://img.shields.io/badge/AppVersion-1.6.3-informational?style=flat-square) ![Maintenance Track: unknown](https://img.shields.io/badge/Maintenance_Track-unknown-red?style=flat-square)
+![Version: 1.6.3-bb.2](https://img.shields.io/badge/Version-1.6.3--bb.2-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.6.3](https://img.shields.io/badge/AppVersion-1.6.3-informational?style=flat-square) ![Maintenance Track: unknown](https://img.shields.io/badge/Maintenance_Track-unknown-red?style=flat-square)
 
 A Helm chart for Karpenter, an open-source node provisioning project built for Kubernetes.
 
@@ -49,6 +49,11 @@ helm install karpenter chart/
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
+| bb-common.networkPolicies.enabled | bool | `true` |  |
+| bb-common.networkPolicies.ingress.defaults.enabled | bool | `true` |  |
+| bb-common.networkPolicies.egress.defaults.enabled | bool | `true` |  |
+| bb-common.authorizationPolicies.enabled | bool | `true` |  |
+| bb-common.authorizationPolicies.defaults.enabled | bool | `true` |  |
 | upstream.nameOverride | string | `"karpenter"` |  |
 | upstream.fullnameOverride | string | `"karpenter"` |  |
 | upstream.imagePullSecrets[0].name | string | `"private-registry"` |  |
