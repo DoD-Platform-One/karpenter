@@ -4,6 +4,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
+## [1.6.3-bb.2] - 2025-11-24
+
+### Changed
+
+- Added bb-common
+- Added network policies
+
 ## [1.6.3-bb.1] - 2025-11-21
 
 ### Changed
