@@ -33,4 +33,6 @@ ignore/*
 # Local History for Visual Studio Code
 .history/
 
-
+# fetch_aws_ip_list generated files
+regions.txt
+iplist.txt

@@ -14,9 +14,10 @@ aws secretsmanager get-secret-value \
 ## Development Override for Testing
 
 1. First, retrieve the Karpenter IAM credentials using the command above
-2. Create a local override file (e.g., `karpenter-dev-overrides.yaml`) with the following configuration
-3. Replace `<your-development-branch>` with your actual branch name
-4. Replace `<AWS_ACCESS_KEY_ID_HERE>` and `<AWS_SECRET_ACCESS_KEY_HERE>` with the credentials from the secrets manager
+1. Create a local override file (e.g., `karpenter-dev-overrides.yaml`) with the following configuration
+1. Replace `<your-development-branch>` with your actual branch name
+1. Use [fetch_aws_ip_list.sh](../fetch_aws_ip_list.sh) To configure Network Policies and Service Entries for your AWS region(s). The script will update [./chart/values.yaml](../chart/values.yaml) for you.
+1. Replace `<AWS_ACCESS_KEY_ID_HERE>` and `<AWS_SECRET_ACCESS_KEY_HERE>` with the credentials from the secrets manager
 
 ```yaml
 flux:
@@ -45,8 +46,6 @@ packages:
       path: "./chart"
       branch: <your-development-branch>
       tag: ""
-    istio:
-      injection: disabled
     values:
       upstream:
         topologySpreadConstraints: []
@@ -63,6 +62,28 @@ packages:
               value: <AWS_SECRET_ACCESS_KEY_HERE>
             - name: AWS_SESSION_TOKEN
               value: ""
+      bbtests:
+        enabled: false # set to `true` to enable bbtests
+      bb-common:
+        routes:
+    inbound:
+      aws:
+        enabled: true
+        gateways:
+          - istio-gateway/public-ingressgateway
+        hosts:
+          - < use ../fetch_aws_ip_list.sh to generate values>
+        service: karpenter
+        port: 443
+        selector:
+          app.kubernetes.io/name: karpenter
+        networkPolicies:
+          egress:
+            from:
+              karpenter:
+                to:
+                  cidr:
+                   < use ../fetch_aws_ip_list.sh to generate values>
 ```
 
 **Important:** Do not commit this file with real credentials. Add it to `.gitignore` or keep it outside the repository.
@@ -88,7 +109,7 @@ helm upgrade -i bigbang chart/ -n bigbang --create-namespace \
 
 ### See [bb MR testing](./docs/test-package-against-bb.md) for details regarding testing changes against bigbang umbrella chart
 
-There are certain integrations within the bigbang ecosystem and this package that require additional testing outside of the specific package tests ran during CI.  This is a requirement when files within those integrations are changed, as to avoid causing breaks up through the bigbang umbrella.  Currently, these include changes to the istio implementation within the package (see: [istio templates](./chart/templates/bigbang/istio/), [network policy templates](./chart/templates/bigbang/networkpolicies/), [service entry templates](./chart/templates/bigbang/serviceentries/)).
+There are certain integrations within the bigbang ecosystem and this package that require additional testing outside of the specific package tests ran during CI.  This is a requirement when files within those integrations are changed, as to avoid causing breaks up through the bigbang umbrella.  Currently, these include changes to the istio implementation within the package (see: [istio templates](../chart/values.yaml#L26), [network policy templates](../chart/values.yaml#L54), [service entry templates](../chart/values.yaml#L39)).
 
 Be aware that any changes to files listed in the [Modifications made to upstream chart](#modifications-made-to-upstream-chart) section will also require a codeowner to validate the changes using above method, to ensure that they do not affect the package or its integrations adversely.
 
@@ -159,13 +180,7 @@ This is a high-level list of modifications that Big Bang has made to the upstrea
 Everything under this directory is a modification to the upstream chart.  The files are modified to work with the Big Bang umbrella chart.  The files are also modified to work with the Istio service mesh.  The Istio modifications are not upstreamed to the original chart.
 
 - `dashboards` - Grafana dashboards.  This is a low-impact integration.
-- `istio/` - Istio configuration.  This is a high-impact integration and requires additional testing when changes are made.
-  - `authorization-policies/` - Istio authorization policies.  This is a high-impact integration and requires additional testing when changes are made.
-  - `peer-authentication/` - Istio peer authentication policies.  This is a high-impact integration and requires additional testing when changes are made.
-  - `service-entries/` - Istio service entries.  This is a high-impact integration and requires additional testing when changes are made.
-  - `sidecars/` - Istio sidecars.  This is a high-impact integration and requires additional testing when changes are made.
-  - `virtual-services/` - Istio virtual services.  This is a high-impact integration and requires additional testing when changes are made.
-- `networkpolicies/` - Network policies.  This is a high-impact integration and requires additional testing when changes are made.
-- `tests/`
+
+- `tests/` - Validation tetss
 
 - Karpenter: Add more files here
