@@ -1,1 +1,84 @@
-{}
+{
+    "baseBranches": [
+        "main"
+    ],
+    "configWarningReuseIssue": false,
+    "dependencyDashboard": true,
+    "dependencyDashboardTitle": "Renovate: Upgrade Karpenter Dependencies",
+    "draftPR": true,
+    "enabledManagers": [
+        
+        "custom.regex",
+        "helmv3"
+    ],
+    "ignorePaths": [
+        "chart/examples/**",
+        "chart/scripts/**"
+    ],
+    "labels": [
+        "karpenter",
+        "renovate"
+    ],
+    "commitMessagePrefix": "SKIP UPDATE CHECK",
+    "packageRules": [
+        {
+            "matchDatasources": [
+                "docker"
+            ],
+            "groupName": "Ironbank",
+            "versioning": "loose",
+            "allowedVersions": "!/-(amd64|arm64)$/"
+        },
+        {
+            "matchDatasources": [
+                "helm"
+            ],
+            "groupName": "Ironbank"
+        },
+        {
+            "matchPackageNames": ["/karpenter/"],
+            "matchDatasources": ["docker"],
+            "allowedVersions": "/^[0-9]+\\.[0-9]+\\.[0-9]+$/"
+        }
+    ],
+    "customManagers": [
+        {
+            "customType": "regex",
+            "managerFilePatterns": [
+                "/^chart/values\\.yaml$/"
+            ],
+            "matchStrings": [
+                "repository:[^\\S\\r\\n]+(?<depName>[^\\s]+)\\s+tag:[^\\S\\r\\n]+(?<currentValue>[\\d\\.]+)"
+            ],
+            "datasourceTemplate": "docker"
+        },
+        {
+            "customType": "regex",
+            "managerFilePatterns": [
+                "/^chart/Chart\\.yaml$/"
+            ],
+            "matchStrings": [
+                "appVersion:[^\\S\\r\\n]+(?<currentValue>.+)"
+            ],
+            "registryUrlTemplate": "https://registry1.dso.mil",
+            "depNameTemplate": "ironbank/opensource/aws/karpenter/controller",
+            "datasourceTemplate": "docker"
+        },
+        {
+            "customType": "regex",
+            "managerFilePatterns": [
+                "/^chart/Chart\\.yaml$/"
+            ],
+            "matchStrings": [
+                "- Karpenter Controller:[^\\S\\r\\n]+(?<currentValue>.+)"
+            ],
+            "registryUrlTemplate": "https://registry1.dso.mil",
+            "depNameTemplate": "ironbank/opensource/aws/karpenter/controller",
+            "datasourceTemplate": "docker"
+        }
+    ],
+    "separateMajorMinor": false,
+    "postUpdateOptions": [
+        "helmUpdateSubChartArchives"
+    ]
+}
