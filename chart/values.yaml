@@ -9,7 +9,7 @@ upstream:
   controller:
     image:
       repository: registry1.dso.mil/ironbank/opensource/aws/karpenter/controller
-      tag: 1.6.3
+      tag: 1.8.2
       digest: ""
     resources:
       requests:
@@ -89,6 +89,7 @@ bb-common:
               52.46.224.0/20:443: true
               108.175.60.0/22:443: true
               52.61.0.0/16:443: true
+              3.45.64.0/18:443: true
               40.39.0.0/16:443: true
               16.65.0.0/16:443: true
               52.94.248.224/28:443: true
@@ -156,6 +157,7 @@ bb-common:
               56.136.0.192/26:443: true
               56.136.121.0/25:443: true
               56.136.224.0/23:443: true
+              56.137.224.0/23:443: true
               56.137.38.0/23:443: true
               35.71.115.0/24:443: true
               15.205.0.0/16:443: true
@@ -171,6 +173,7 @@ bb-common:
               182.30.0.0/16:443: true
               108.175.60.0/22:443: true
               52.61.0.0/16:443: true
+              3.45.64.0/18:443: true
               16.65.0.0/16:443: true
               52.94.248.224/28:443: true
               18.99.240.0/20:443: true

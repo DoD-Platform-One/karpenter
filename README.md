@@ -1,7 +1,7 @@
 <!-- Warning: Do not manually edit this file. See notes on gluon + helm-docs at the end of this file for more information. -->
 # karpenter
 
-![Version: 1.6.3-bb.3](https://img.shields.io/badge/Version-1.6.3--bb.3-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.6.3](https://img.shields.io/badge/AppVersion-1.6.3-informational?style=flat-square) ![Maintenance Track: unknown](https://img.shields.io/badge/Maintenance_Track-unknown-red?style=flat-square)
+![Version: 1.8.2-bb.0](https://img.shields.io/badge/Version-1.8.2--bb.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.8.2](https://img.shields.io/badge/AppVersion-1.8.2-informational?style=flat-square) ![Maintenance Track: unknown](https://img.shields.io/badge/Maintenance_Track-unknown-red?style=flat-square)
 
 A Helm chart for Karpenter, an open-source node provisioning project built for Kubernetes.
 
@@ -53,7 +53,7 @@ helm install karpenter chart/
 | upstream.fullnameOverride | string | `"karpenter"` |  |
 | upstream.imagePullSecrets[0].name | string | `"private-registry"` |  |
 | upstream.controller.image.repository | string | `"registry1.dso.mil/ironbank/opensource/aws/karpenter/controller"` |  |
-| upstream.controller.image.tag | string | `"1.6.3"` |  |
+| upstream.controller.image.tag | string | `"1.8.2"` |  |
 | upstream.controller.image.digest | string | `""` |  |
 | upstream.controller.resources.requests.cpu | int | `1` |  |
 | upstream.controller.resources.requests.memory | string | `"4Gi"` |  |
@@ -105,6 +105,7 @@ helm install karpenter chart/
 | bb-common.networkPolicies.egress.from.karpenter.to.cidr."52.46.224.0/20:443" | bool | `true` |  |
 | bb-common.networkPolicies.egress.from.karpenter.to.cidr."108.175.60.0/22:443" | bool | `true` |  |
 | bb-common.networkPolicies.egress.from.karpenter.to.cidr."52.61.0.0/16:443" | bool | `true` |  |
+| bb-common.networkPolicies.egress.from.karpenter.to.cidr."3.45.64.0/18:443" | bool | `true` |  |
 | bb-common.networkPolicies.egress.from.karpenter.to.cidr."40.39.0.0/16:443" | bool | `true` |  |
 | bb-common.networkPolicies.egress.from.karpenter.to.cidr."16.65.0.0/16:443" | bool | `true` |  |
 | bb-common.networkPolicies.egress.from.karpenter.to.cidr."52.94.248.224/28:443" | bool | `true` |  |
@@ -172,6 +173,7 @@ helm install karpenter chart/
 | bb-common.networkPolicies.egress.from.karpenter.to.cidr."56.136.0.192/26:443" | bool | `true` |  |
 | bb-common.networkPolicies.egress.from.karpenter.to.cidr."56.136.121.0/25:443" | bool | `true` |  |
 | bb-common.networkPolicies.egress.from.karpenter.to.cidr."56.136.224.0/23:443" | bool | `true` |  |
+| bb-common.networkPolicies.egress.from.karpenter.to.cidr."56.137.224.0/23:443" | bool | `true` |  |
 | bb-common.networkPolicies.egress.from.karpenter.to.cidr."56.137.38.0/23:443" | bool | `true` |  |
 | bb-common.networkPolicies.egress.from.karpenter.to.cidr."35.71.115.0/24:443" | bool | `true` |  |
 | bb-common.networkPolicies.egress.from.karpenter.to.cidr."15.205.0.0/16:443" | bool | `true` |  |
@@ -187,6 +189,7 @@ helm install karpenter chart/
 | bb-common.networkPolicies.egress.from.karpenter.to.cidr."182.30.0.0/16:443" | bool | `true` |  |
 | bb-common.networkPolicies.egress.from.karpenter.to.cidr."108.175.60.0/22:443" | bool | `true` |  |
 | bb-common.networkPolicies.egress.from.karpenter.to.cidr."52.61.0.0/16:443" | bool | `true` |  |
+| bb-common.networkPolicies.egress.from.karpenter.to.cidr."3.45.64.0/18:443" | bool | `true` |  |
 | bb-common.networkPolicies.egress.from.karpenter.to.cidr."16.65.0.0/16:443" | bool | `true` |  |
 | bb-common.networkPolicies.egress.from.karpenter.to.cidr."52.94.248.224/28:443" | bool | `true` |  |
 | bb-common.networkPolicies.egress.from.karpenter.to.cidr."18.99.240.0/20:443" | bool | `true` |  |

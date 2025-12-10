@@ -17,7 +17,8 @@
     ],
     "labels": [
         "karpenter",
-        "renovate"
+        "renovate",
+        "disable-ci"
     ],
     "commitMessagePrefix": "SKIP UPDATE CHECK",
     "packageRules": [
