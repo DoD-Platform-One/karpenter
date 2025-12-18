@@ -4,6 +4,15 @@
 upstream:
   nameOverride: karpenter
   fullnameOverride: karpenter
+  serviceMonitor:
+    enabled: false # Enable if you are using monitoring
+    endpointConfig:
+      scheme: https
+      tlsConfig:
+        caFile: /etc/prom-certs/root-cert.pem
+        certFile: /etc/prom-certs/cert-chain.pem
+        keyFile: /etc/prom-certs/key.pem
+        insecureSkipVerify: true 
   imagePullSecrets:
     - name: private-registry
   controller:
@@ -18,6 +27,8 @@ upstream:
       limits:
         cpu: 2
         memory: 8Gi
+monitoring:
+  enabled: false
 bbtests:
   enabled: false
   scripts:
@@ -32,10 +43,7 @@ bb-common:
       enabled: true
       generateFromNetpol: true
       defaults:
-        allowInNamespace:
-          enabled: true
-        denyAll:
-          enabled: true
+        enabled: true
   routes:
     inbound:
       aws:
@@ -56,6 +64,12 @@ bb-common:
     ingress:
       defaults:
         enabled: true
+      to:
+        karpenter:
+          from:
+            k8s:
+              monitoring/prometheus: true       
+                    
     egress:
       defaults:
         enabled: true
