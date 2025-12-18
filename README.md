@@ -1,7 +1,7 @@
 <!-- Warning: Do not manually edit this file. See notes on gluon + helm-docs at the end of this file for more information. -->
 # karpenter
 
-![Version: 1.8.2-bb.0](https://img.shields.io/badge/Version-1.8.2--bb.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.8.2](https://img.shields.io/badge/AppVersion-1.8.2-informational?style=flat-square) ![Maintenance Track: unknown](https://img.shields.io/badge/Maintenance_Track-unknown-red?style=flat-square)
+![Version: 1.8.2-bb.1](https://img.shields.io/badge/Version-1.8.2--bb.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.8.2](https://img.shields.io/badge/AppVersion-1.8.2-informational?style=flat-square) ![Maintenance Track: unknown](https://img.shields.io/badge/Maintenance_Track-unknown-red?style=flat-square)
 
 A Helm chart for Karpenter, an open-source node provisioning project built for Kubernetes.
 
@@ -51,6 +51,12 @@ helm install karpenter chart/
 |-----|------|---------|-------------|
 | upstream.nameOverride | string | `"karpenter"` |  |
 | upstream.fullnameOverride | string | `"karpenter"` |  |
+| upstream.serviceMonitor.enabled | bool | `false` |  |
+| upstream.serviceMonitor.endpointConfig.scheme | string | `"https"` |  |
+| upstream.serviceMonitor.endpointConfig.tlsConfig.caFile | string | `"/etc/prom-certs/root-cert.pem"` |  |
+| upstream.serviceMonitor.endpointConfig.tlsConfig.certFile | string | `"/etc/prom-certs/cert-chain.pem"` |  |
+| upstream.serviceMonitor.endpointConfig.tlsConfig.keyFile | string | `"/etc/prom-certs/key.pem"` |  |
+| upstream.serviceMonitor.endpointConfig.tlsConfig.insecureSkipVerify | bool | `true` |  |
 | upstream.imagePullSecrets[0].name | string | `"private-registry"` |  |
 | upstream.controller.image.repository | string | `"registry1.dso.mil/ironbank/opensource/aws/karpenter/controller"` |  |
 | upstream.controller.image.tag | string | `"1.8.2"` |  |
@@ -59,6 +65,7 @@ helm install karpenter chart/
 | upstream.controller.resources.requests.memory | string | `"4Gi"` |  |
 | upstream.controller.resources.limits.cpu | int | `2` |  |
 | upstream.controller.resources.limits.memory | string | `"8Gi"` |  |
+| monitoring.enabled | bool | `false` |  |
 | bbtests.enabled | bool | `false` |  |
 | bbtests.scripts.image | string | `"registry1.dso.mil/ironbank/big-bang/devops-tester:1.0"` |  |
 | bb-common.istio.enabled | bool | `true` |  |
@@ -66,8 +73,7 @@ helm install karpenter chart/
 | bb-common.istio.sidecar.enabled | bool | `true` |  |
 | bb-common.istio.authorizationPolicies.enabled | bool | `true` |  |
 | bb-common.istio.authorizationPolicies.generateFromNetpol | bool | `true` |  |
-| bb-common.istio.authorizationPolicies.defaults.allowInNamespace.enabled | bool | `true` |  |
-| bb-common.istio.authorizationPolicies.defaults.denyAll.enabled | bool | `true` |  |
+| bb-common.istio.authorizationPolicies.defaults.enabled | bool | `true` |  |
 | bb-common.routes.inbound.aws.enabled | bool | `true` |  |
 | bb-common.routes.inbound.aws.gateways[0] | string | `"istio-gateway/public-ingressgateway"` |  |
 | bb-common.routes.inbound.aws.hosts[0] | string | `"ec2.us-gov-east-1.amazonaws.com"` |  |
@@ -79,6 +85,7 @@ helm install karpenter chart/
 | bb-common.routes.inbound.aws.selector."app.kubernetes.io/name" | string | `"karpenter"` |  |
 | bb-common.networkPolicies.enabled | bool | `true` |  |
 | bb-common.networkPolicies.ingress.defaults.enabled | bool | `true` |  |
+| bb-common.networkPolicies.ingress.to.karpenter.from.k8s.monitoring/prometheus | bool | `true` |  |
 | bb-common.networkPolicies.egress.defaults.enabled | bool | `true` |  |
 | bb-common.networkPolicies.egress.from.karpenter.to.definition.kubeAPI | bool | `true` |  |
 | bb-common.networkPolicies.egress.from.karpenter.to.cidr."35.71.115.0/24:443" | bool | `true` |  |

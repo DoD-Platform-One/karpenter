@@ -1,0 +1,14 @@
+{{- if .Values.monitoring.enabled }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "karpenter.fullname" . }}
+  namespace: monitoring
+  labels:
+    grafana_dashboard: "1"
+data:
+  karpenter-capacity-dashboard.json: |
+    {{ .Files.Get "dashboards/karpenter-capacity-dashboard.json"| nindent 4 }}
+  karpenter-performance-dashboard.json: |
+    {{ .Files.Get "dashboards/karpenter-performance-dashboard.json" | nindent 4 }}
+{{- end }}

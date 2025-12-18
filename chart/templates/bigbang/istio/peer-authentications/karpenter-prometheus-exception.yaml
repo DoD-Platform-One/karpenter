@@ -1,0 +1,14 @@
+{{- if .Values.monitoring.enabled }}
+apiVersion: security.istio.io/v1beta1
+kind: PeerAuthentication
+metadata:
+  name: karpenter-prometheus-exception
+  namespace: {{ .Release.Namespace }}
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: prometheus
+  portLevelMtls:
+    {{ quote .Values.upstream.controller.metrics.port }}:
+      mode: PERMISSIVE
+{{- end }}
