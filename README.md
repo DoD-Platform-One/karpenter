@@ -1,7 +1,7 @@
 <!-- Warning: Do not manually edit this file. See notes on gluon + helm-docs at the end of this file for more information. -->
 # karpenter
 
-![Version: 1.8.2-bb.1](https://img.shields.io/badge/Version-1.8.2--bb.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.8.2](https://img.shields.io/badge/AppVersion-1.8.2-informational?style=flat-square) ![Maintenance Track: unknown](https://img.shields.io/badge/Maintenance_Track-unknown-red?style=flat-square)
+![Version: 1.8.3-bb.0](https://img.shields.io/badge/Version-1.8.3--bb.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.8.3](https://img.shields.io/badge/AppVersion-1.8.3-informational?style=flat-square) ![Maintenance Track: unknown](https://img.shields.io/badge/Maintenance_Track-unknown-red?style=flat-square)
 
 A Helm chart for Karpenter, an open-source node provisioning project built for Kubernetes.
 
@@ -59,7 +59,7 @@ helm install karpenter chart/
 | upstream.serviceMonitor.endpointConfig.tlsConfig.insecureSkipVerify | bool | `true` |  |
 | upstream.imagePullSecrets[0].name | string | `"private-registry"` |  |
 | upstream.controller.image.repository | string | `"registry1.dso.mil/ironbank/opensource/aws/karpenter/controller"` |  |
-| upstream.controller.image.tag | string | `"1.8.2"` |  |
+| upstream.controller.image.tag | string | `"1.8.3"` |  |
 | upstream.controller.image.digest | string | `""` |  |
 | upstream.controller.resources.requests.cpu | int | `1` |  |
 | upstream.controller.resources.requests.memory | string | `"4Gi"` |  |

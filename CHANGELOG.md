@@ -4,6 +4,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
+## [1.8.3-bb.0] - 2026-01-07
+
+- Updated bb-common 0.11.1 -> 0.12.2
+- Updated karpenter 1.8.2 -> 1.8.3
+
 ## [1.8.2-bb.1] - 2025-12-17
 
 ### Changed
