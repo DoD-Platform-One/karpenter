@@ -18,7 +18,9 @@
     "labels": [
         "karpenter",
         "renovate",
-        "disable-ci"
+        "disable-ci",
+        "kind::maintenance",
+        "priority::2"
     ],
     "commitMessagePrefix": "SKIP UPDATE CHECK",
     "packageRules": [

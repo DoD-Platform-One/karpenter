@@ -1,12 +1,12 @@
 dependencies:
 - name: karpenter
   repository: oci://public.ecr.aws/karpenter
-  version: 1.8.3
+  version: 1.8.6
 - name: gluon
   repository: oci://registry1.dso.mil/bigbang
   version: 0.9.7
 - name: bb-common
   repository: oci://registry1.dso.mil/bigbang
-  version: 0.12.2
-digest: sha256:b919231c7dfe4a7e0643a04ffbc95797fab9e8681e4c3de96399cf2ce6bd219e
-generated: "2026-01-07T07:06:31.962421632Z"
+  version: 0.14.0
+digest: sha256:51df1d111bb60b5cf0a6f02f08671e8a704ae36dffcad19ac69d3f407f8b53b9
+generated: "2026-01-29T07:07:34.218267385Z"
