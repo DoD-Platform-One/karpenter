@@ -36,3 +36,8 @@ ignore/*
 # fetch_aws_ip_list generated files
 regions.txt
 iplist.txt
+
+# Doc templates
+_templates.gotmpl
+.helmdocsignore
+README.md.gotmpl
