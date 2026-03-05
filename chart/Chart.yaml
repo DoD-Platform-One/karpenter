@@ -15,6 +15,12 @@ icon: https://repository-images.githubusercontent.com/278480393/dab059c8-caa1-4b
 sources:
   - https://github.com/aws/karpenter-provider-aws/
 annotations:
+  bigbang.dev/maintenanceTrack: bb_maintained
+  bigbang.dev/applicationVersions: |
+    - Karpenter: 1.8.6
+  bigbang.dev/upstreamReleaseNotesMarkdown: |
+    - [Find upstream chart's CHANGELOG here](https://github.com/aws/karpenter-provider-aws/releases)
+    - [Find upstream application release notes here](https://github.com/aws/karpenter/releases)
   artifacthub.io/alternativeName: karpenter-provider-aws
   artifacthub.io/crds: |
     - kind: EC2NodeClass
@@ -37,7 +43,7 @@ annotations:
       condition: bbtests.enabled
       image: registry1.dso.mil/ironbank/big-bang/devops-tester:1.0
     - name: karpenter
-      image: registry1.dso.mil/ironbank/opensource/aws/karpenter/controller:1.8.2
+      image: registry1.dso.mil/ironbank/opensource/aws/karpenter/controller:1.8.6
 dependencies:
 - name: karpenter
   version: '1.8.6'
