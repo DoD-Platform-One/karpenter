@@ -63,7 +63,7 @@ packages:
             - name: AWS_SESSION_TOKEN
               value: ""
       bbtests:
-        enabled: false # set to `true` to enable bbtests
+        enabled: true
       bb-common:
         routes:
     inbound:
@@ -167,6 +167,14 @@ BigBang makes modifications to the upstream helm chart. The full list of changes
     ```
 
    All pods should be in `Running` status with all containers ready as well as no errors in the container logs.
+
+1. Run the helm tests (ensure `bbtests.enabled: true` is set in your overrides):
+
+    ```bash
+    helm test karpenter -n bigbang
+    ```
+
+   All test suites should show `Phase: Succeeded`.
 
 1. Perform a manual upgrade test. First deploy the current version. Then deploy your development branch. Verify that the upgrade is successful and that the Karpenter Helm release and pods remain healthy.
 1. Retest with monitoring and logging enabled. Verify that the logging and monitoring are working.

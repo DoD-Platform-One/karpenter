@@ -4,6 +4,18 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
+## [1.8.6-bb.1] - 2026-02-25
+
+### Added
+
+- Added gluon-based script tests (chart/tests/scripts/test-health.sh)
+- Replaced custom test-metrics.yaml with gluon test templates
+- Added bbtests script envs for metrics and health endpoints
+- Added tests/test-values.yaml for BB universe acceptance testing
+- Added maintained track annotations to Chart.yaml
+- Fixed helm.sh/images tag from 1.8.2 to 1.8.6
+- Added default clusterName to values.yaml for template validation
+
 ## [1.8.6-bb.0] - 2026-02-02
 
 ### Changed

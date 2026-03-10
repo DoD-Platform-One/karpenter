@@ -1,0 +1,26 @@
+{{- if .Values.bbtests.enabled }}
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-ingress-to-karpenter-from-test-pod
+  namespace: {{ .Release.Namespace }}
+  annotations:
+    "helm.sh/hook": test
+    "helm.sh/hook-delete-policy": before-hook-creation,hook-succeeded
+spec:
+  podSelector:
+    matchLabels:
+      app.kubernetes.io/name: karpenter
+  ingress:
+    - from:
+        - podSelector:
+            matchLabels:
+              helm-test: enabled
+      ports:
+        - protocol: TCP
+          port: 8080
+        - protocol: TCP
+          port: 8081
+  policyTypes:
+    - Ingress
+{{- end }}
