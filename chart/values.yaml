@@ -4,6 +4,8 @@
 upstream:
   nameOverride: karpenter
   fullnameOverride: karpenter
+  settings:
+    clusterName: "set-me"
   serviceMonitor:
     enabled: false # Enable if you are using monitoring
     endpointConfig:
@@ -33,6 +35,12 @@ bbtests:
   enabled: false
   scripts:
     image: "registry1.dso.mil/ironbank/big-bang/devops-tester:1.0"
+    envs:
+      METRICS_URL: 'http://{{ include "karpenter.fullname" . }}.{{ .Release.Namespace }}.svc.cluster.local:8080/metrics'
+    permissions:
+      resources:
+        - configmaps
+        - pods
 bb-common:
   istio:
     enabled: true
