@@ -4,6 +4,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
+## [1.8.6-bb.2] - 2026-02-25
+
+### Added
+
+- Added Kyverno policy integration documentation with required policy exclusions
+- Validated via k3d dev cluster deployment with full BB stack
+
 ## [1.8.6-bb.1] - 2026-02-25
 
 ### Added
